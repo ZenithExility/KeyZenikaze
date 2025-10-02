@@ -3,105 +3,265 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Key System</title>
+  <title>Zenikaze Hub - Key System</title>
   <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --accent:#7c3aed; --muted:#94a3b8; --text:#e6eef8;
+    :root {
+      --zenikaze-gold: #e2b724;
+      --bg-dark: #000000;
+      --bg-card: #141414;
+      --text-primary: #ffffff;
+      --text-secondary: #b4b4b4;
     }
-    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
-    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071029 0%, #081427 60%);color:var(--text);padding:24px;}
-    .card{width:100%;max-width:480px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:20px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 10px 30px rgba(2,6,23,0.6);text-align:center}
-    h1{margin:0 0 12px;font-size:22px;}
-    .keybox{display:flex;gap:8px;align-items:center;margin-bottom:14px}
-    .key{flex:1;background:rgba(255,255,255,0.05);padding:14px;border-radius:8px;font-family:monospace;font-size:18px;word-break:break-all;cursor:pointer}
-    button{background:var(--accent);border:0;padding:10px 14px;border-radius:8px;color:white;cursor:pointer;font-weight:600}
-    .meta{margin-top:12px;color:var(--muted);font-size:14px}
-    .meta strong{color:var(--text)}
+    
+    * {
+      box-sizing: border-box;
+      font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      padding: 24px;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--zenikaze-gold);
+    }
+    
+    .header p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+    }
+    
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 32px;
+      border: 2px solid var(--zenikaze-gold);
+      box-shadow: 0 8px 32px rgba(226, 183, 36, 0.15);
+    }
+    
+    .key-label {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--zenikaze-gold);
+      text-align: center;
+    }
+    
+    .keybox {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    
+    .key {
+      flex: 1;
+      background: rgba(226, 183, 36, 0.08);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(226, 183, 36, 0.2);
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      word-break: break-all;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      color: var(--text-primary);
+    }
+    
+    .key:hover {
+      background: rgba(226, 183, 36, 0.12);
+      border-color: var(--zenikaze-gold);
+      transform: translateY(-2px);
+    }
+    
+    button {
+      background: var(--bg-dark);
+      border: 1px solid var(--zenikaze-gold);
+      padding: 14px 24px;
+      border-radius: 12px;
+      color: var(--zenikaze-gold);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    button:hover {
+      background: var(--zenikaze-gold);
+      color: var(--bg-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(226, 183, 36, 0.3);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    .meta {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(226, 183, 36, 0.2);
+      color: var(--text-secondary);
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    
+    .meta strong {
+      color: var(--zenikaze-gold);
+      font-weight: 600;
+    }
+    
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+    
+    .footer strong {
+      color: var(--zenikaze-gold);
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .card {
+      animation: fadeIn 0.6s ease;
+    }
   </style>
 </head>
 <body>
-  <div style="text-align">Made By ZenithExility
+  <div class="header">
+    <h1>⚡ ZENIKAZE HUB</h1>
+    <p>KEY SYSTEM</p>
+  </div>
+  
   <div class="card">
-    <h1>Key:</h1>
+    <div class="key-label">Your Key:</div>
     <div class="keybox">
-      <div id="key" class="key" aria-live="polite">-- gerando --</div>
-      <button id="copyBtn">copy</button>
+      <div id="key" class="key" aria-live="polite">-- generating --</div>
+      <button id="copyBtn">Copy</button>
     </div>
     <div class="meta">
-      Reset in: <strong id="countdown">--:--:--</strong> | <strong> reset every 00:00 utc  </strong>
+      Reset in: <strong id="countdown">--:--:--</strong>
+      <br>
+      Keys reset every <strong>00:00 UTC</strong>
     </div>
   </div>
- <script>
-const keyEl = document.getElementById("key");
-const copyBtn = document.getElementById("copyBtn");
-const countdownEl = document.getElementById("countdown");
+  
+  <div class="footer">
+    Made by <strong>ZenithExility</strong>
+  </div>
 
-function randomHex(n) {
-  const chars = '0123456789abcdef';
-  let str = '';
-  for (let i = 0; i < n; i++) {
-    str += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return str;
-}
-
-function gerarKey() {
-  const hoje = new Date();
-  const seed = hoje.getUTCDate() + hoje.getUTCMonth() + hoje.getUTCFullYear();
-  let s = seed % 2147483647;
-  function seededRandom() {
-    s = (s * 16807) % 2147483647;
-    return (s - 1) / 2147483646;
-  }
-  Math.random = seededRandom;
-  const part1 = randomHex(4);
-  const part2 = randomHex(4);
-  const part3 = randomHex(4);
-  const part4 = randomHex(4);
-  return `ZNK-${part1}-${part2}-${part3}-${part4}`;
-}
-
-function updateKey() {
-  keyEl.textContent = gerarKey();
-}
-
-copyBtn.onclick = async () => {
-  try {
-    await navigator.clipboard.writeText(keyEl.textContent);
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => copyBtn.textContent = "copy", 1200);
-  } catch {
-    alert("Falha ao copiar: " + keyEl.textContent);
-  }
-}
-
-keyEl.addEventListener('click', () => {
-  navigator.clipboard.writeText(keyEl.textContent).then(() => {
-    alert(`Key "${keyEl.textContent}" copiada para a área de transferência!`);
-  });
-});
-
-function formatTime(ms) {
-  if(ms<0) ms=0;
-  const s=Math.floor(ms/1000),
-        h=Math.floor(s/3600),
-        m=Math.floor((s%3600)/60),
-        ss=s%60;
-  return `${h.toString().padStart(2,"0")}:${m.toString().padStart(2,"0")}:${ss.toString().padStart(2,"0")}`;
-}
-
-function updateCountdown() {
-  const now = new Date();
-  const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0));
-  countdownEl.textContent = formatTime(utcMidnight - now);
-}
-
-updateKey();
-updateCountdown();
-setInterval(() => {
-  updateCountdown();
-  updateKey(); 
-}, 1000);
-</script>
+  <script>
+    const keyEl = document.getElementById("key");
+    const copyBtn = document.getElementById("copyBtn");
+    const countdownEl = document.getElementById("countdown");
+    
+    function randomHex(n) {
+      const chars = '0123456789abcdef';
+      let str = '';
+      for (let i = 0; i < n; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return str;
+    }
+    
+    function gerarKey() {
+      const hoje = new Date();
+      const seed = hoje.getUTCDate() + hoje.getUTCMonth() + hoje.getUTCFullYear();
+      let s = seed % 2147483647;
+      
+      function seededRandom() {
+        s = (s * 16807) % 2147483647;
+        return (s - 1) / 2147483646;
+      }
+      
+      Math.random = seededRandom;
+      
+      const part1 = randomHex(4);
+      const part2 = randomHex(4);
+      const part3 = randomHex(4);
+      const part4 = randomHex(4);
+      
+      return `ZNK-${part1}-${part2}-${part3}-${part4}`;
+    }
+    
+    function updateKey() {
+      keyEl.textContent = gerarKey();
+    }
+    
+    copyBtn.onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(keyEl.textContent);
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => copyBtn.textContent = originalText, 1200);
+      } catch {
+        alert("Failed to copy: " + keyEl.textContent);
+      }
+    }
+    
+    keyEl.addEventListener('click', () => {
+      navigator.clipboard.writeText(keyEl.textContent).then(() => {
+        const originalBg = keyEl.style.background;
+        keyEl.style.background = 'rgba(226, 183, 36, 0.2)';
+        setTimeout(() => keyEl.style.background = originalBg, 300);
+      });
+    });
+    
+    function formatTime(ms) {
+      if(ms < 0) ms = 0;
+      const s = Math.floor(ms / 1000);
+      const h = Math.floor(s / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const ss = s % 60;
+      return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${ss.toString().padStart(2, "0")}`;
+    }
+    
+    function updateCountdown() {
+      const now = new Date();
+      const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0));
+      countdownEl.textContent = formatTime(utcMidnight - now);
+    }
+    
+    updateKey();
+    updateCountdown();
+    setInterval(() => {
+      updateCountdown();
+    }, 1000);
+  </script>
 </body>
 </html>
