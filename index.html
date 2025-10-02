@@ -186,6 +186,20 @@
   </div>
 
   <script>
+    // Força reload quando volta para a página
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    });
+
+    // Força reload quando a página fica visível novamente
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) {
+        window.location.reload();
+      }
+    });
+
     const keyEl = document.getElementById("key");
     const copyBtn = document.getElementById("copyBtn");
     const countdownEl = document.getElementById("countdown");
